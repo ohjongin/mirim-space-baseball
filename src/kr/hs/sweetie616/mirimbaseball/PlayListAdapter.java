@@ -13,12 +13,6 @@ import kr.hs.sweetie616.mirimbaseball.model.PlayRecord;
 
 public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
     protected int currPlayer = 0;
-	TextView tv1;
-	TextView tv2;
-	TextView tv3;
-	TextView tv4;
-	TextView tv5;
-	TextView tv6;
 
     public PlayListAdapter(Context context, ArrayList<PlayRecord> items) {
         super(context, R.layout.listitem_play, items);
@@ -34,6 +28,8 @@ public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
         PlayRecord playRecord = getItem(position);
         TextView tvItem = (TextView)convertView.findViewById(R.id.text1);
 
+        // TODO: layout에서 findViewById로 view를 구해서 PlayRecord에서 계산된 값으로 적절하게 View를 설정해야 함.
+
         if (position % 2 == currPlayer) {
 			tvItem.setTextColor(0xff336633);
 		} else {
@@ -45,15 +41,5 @@ public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
 	
 	public void setPlayer(int player) {
 		currPlayer = player;
-	}
-	
-	//FIXME	이부분도 맞게 한건지 잘 모르겠어요ㅜㅜ
-	public void setText(String s1, String s2, String s3, String s4, String s5, String s6) {
-		tv1.setText("" + s1);
-		tv2.setText("" + s2);
-		tv3.setText("" + s3);
-		tv4.setText("" + s4);
-		tv5.setText("" + s5);
-		tv6.setText("" + s6);
 	}
 }
