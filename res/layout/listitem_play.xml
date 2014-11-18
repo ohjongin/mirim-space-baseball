@@ -31,21 +31,27 @@
         android:background="@drawable/round_rect">
 
         <ImageView
+            android:id="@+id/iv_strike0"
             android:layout_width="@dimen/circle_size"
             android:layout_height="@dimen/circle_size"
             android:layout_margin="1dp"
+            android:enabled="false"
             android:src="@drawable/selector_circle"/>
 
         <ImageView
+            android:id="@+id/iv_strike1"
             android:layout_width="@dimen/circle_size"
             android:layout_height="@dimen/circle_size"
             android:layout_margin="1dp"
+            android:enabled="false"
             android:src="@drawable/selector_circle"/>
 
         <ImageView
+            android:id="@+id/iv_strike2"
             android:layout_width="@dimen/circle_size"
             android:layout_height="@dimen/circle_size"
             android:layout_margin="1dp"
+            android:enabled="false"
             android:src="@drawable/selector_circle"/>
     </LinearLayout>
 
@@ -59,21 +65,27 @@
         android:background="@drawable/round_rect">
 
         <ImageView
+            android:id="@+id/iv_ball0"
             android:layout_width="@dimen/circle_size"
             android:layout_height="@dimen/circle_size"
             android:layout_margin="1dp"
+            android:enabled="false"
             android:src="@drawable/selector_circle"/>
 
         <ImageView
+            android:id="@+id/iv_ball1"
             android:layout_width="@dimen/circle_size"
             android:layout_height="@dimen/circle_size"
             android:layout_margin="1dp"
+            android:enabled="false"
             android:src="@drawable/selector_circle"/>
 
         <ImageView
+            android:id="@+id/iv_ball2"
             android:layout_width="@dimen/circle_size"
             android:layout_height="@dimen/circle_size"
             android:layout_margin="1dp"
+            android:enabled="false"
             android:src="@drawable/selector_circle"/>
     </LinearLayout>
 
@@ -87,21 +99,27 @@
         android:background="@drawable/round_rect">
 
         <ImageView
+            android:id="@+id/iv_out0"
             android:layout_width="@dimen/circle_size"
             android:layout_height="@dimen/circle_size"
             android:layout_margin="1dp"
+            android:enabled="false"
             android:src="@drawable/selector_circle"/>
 
         <ImageView
+            android:id="@+id/iv_out1"
             android:layout_width="@dimen/circle_size"
             android:layout_height="@dimen/circle_size"
             android:layout_margin="1dp"
+            android:enabled="false"
             android:src="@drawable/selector_circle"/>
 
         <ImageView
+            android:id="@+id/iv_out2"
             android:layout_width="@dimen/circle_size"
             android:layout_height="@dimen/circle_size"
             android:layout_margin="1dp"
+            android:enabled="false"
             android:src="@drawable/selector_circle"/>
     </LinearLayout>
 </LinearLayout>

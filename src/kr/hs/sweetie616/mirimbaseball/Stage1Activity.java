@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import kr.hs.sweetie616.mirimbaseball.model.PlayRecord;
 
@@ -42,12 +43,12 @@ public class Stage1Activity extends ActionBarActivity implements OnClickListener
 
         tv_playerName.setText(player1 + " 선수 공격!");
 
-        listView = (ListView) findViewById(R.id.list_resultScreen);
+        listView = (ListView) findViewById(android.R.id.list);
         playList = new ArrayList<PlayRecord>();
         playAdapter = new PlayListAdapter(this, playList);
         listView.setAdapter(playAdapter);
 
-        init_com();
+        initGames();
     }
 
     @Override
@@ -138,22 +139,9 @@ public class Stage1Activity extends ActionBarActivity implements OnClickListener
                 cnt_play2++;
             }
 
-            // s3 = Arrays.toString(userNumbers);
-            s4 = drawCircle(nums_you[0]);
-            s5 = drawCircle(nums_you[1]);
-            s6 = drawCircle(nums_you[2]);
-//            strResult += Arrays.toString(userNumbers) + "\t";
-//            strResult += drawCircle(nums_you[0]);
-//            strResult += drawCircle(nums_you[1]);
-//            strResult += drawCircle(nums_you[2]);
-//
-//            appendResult(strResult);
-
-            playAdapter.setText(s1, s2, s3, s4, s5, s6);
-
+            addPlayRecord(playRecord);
 
             if (nums_you[0] == 3) {
-
                 //TODO Intent
                 //어펜드 리절트 대신 다음 레이아웃으로 인텐트시켜서 이긴 사용자 이름 띄워준 후
                 //랜덤벌칙 또는 메인으로 버튼 두개 있도록 다음 레이아웃 만들기
@@ -191,28 +179,37 @@ public class Stage1Activity extends ActionBarActivity implements OnClickListener
         return str;
     }
 
-    public void appendResult(String str) {
-        // playList.add(str);
+    public void addPlayRecord(PlayRecord playRecord) {
+        playList.add(playRecord);
         int pos = playAdapter.getCount() - 1;
         listView.smoothScrollToPosition(pos);
         playAdapter.notifyDataSetChanged();
     }
 
-    //게임 초기화
-    public void init_com() {
+    public void appendResult(String msg) {
+        playList.add(new PlayRecord(msg));
+        int pos = playAdapter.getCount() - 1;
+        listView.smoothScrollToPosition(pos);
+        playAdapter.notifyDataSetChanged();
+    }
+
+    // 게임 초기화
+    public void initGames() {
         cnt_play1 = 0; // 공격횟수 초기화;
         cnt_play2 = 0; // 공격횟수 초기화;
         for (TextView v : TextViewValue) {
             v.setText(" ");
         }
+
+        Integer numAnswers[] = new Integer[3];
         // 중복되지 않는 3개의 난수 저장.
         int i = 0;
         do {
             int r = (int) (Math.random() * 9) + 1;    //1~9 사이의 값 추출
-            numAnswerList.set(i, r);
+            numAnswers[i] = r;
 
             for (int j = 0; j < i; j++) { // 중복되는 값 검사.
-                if (numAnswerList.get(i).equals(numAnswerList.get(j))) {
+                if (numAnswers[i].equals(numAnswers[j])) {
                     i--;
                     break;    //중복되는 값이 있으면 i를 빼준 후 반복문 종료
                 }
@@ -220,6 +217,8 @@ public class Stage1Activity extends ActionBarActivity implements OnClickListener
 
             i++;
         } while (i < 3); // 3회전
+
+        numAnswerList.addAll(Arrays.asList(numAnswers));
 
         Toast.makeText(this, numAnswerList.toString(), Toast.LENGTH_LONG).show();
 

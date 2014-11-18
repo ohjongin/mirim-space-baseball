@@ -10,11 +10,13 @@ import java.util.ArrayList;
  * 14. 11. 18
  */
 public class PlayRecord {
-    protected ArrayList<Integer> userNumbers = new ArrayList<Integer>();
+    protected ArrayList<Integer> userNumbers = new ArrayList<Integer>(3);
 
     protected int strike;
     protected int ball;
     protected int out;
+
+    protected String message;
 
     public PlayRecord(int[] numArray) {
         initialize(numArray[0], numArray[1], numArray[2]);
@@ -24,12 +26,16 @@ public class PlayRecord {
         initialize(num1, num2, num3);
     }
 
+    public PlayRecord(String msg) {
+        message = msg;
+    }
+
     public void initialize(int num1, int num2, int num3) {
         userNumbers.clear();
 
-        userNumbers.add(num1);
-        userNumbers.add(num2);
-        userNumbers.add(num3);
+        userNumbers.add(0, num1);
+        userNumbers.add(1, num2);
+        userNumbers.add(2, num3);
     }
 
     public void calculate(ArrayList<Integer> numAnswerList) {
@@ -72,5 +78,13 @@ public class PlayRecord {
 
     public void setOut(int out) {
         this.out = out;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
