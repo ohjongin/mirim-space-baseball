@@ -2,6 +2,7 @@ package kr.hs.sweetie616.mirimbaseball;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -246,7 +247,9 @@ public class Stage1Activity extends ActionBarActivity implements OnClickListener
             i++;
         } while (i < 3); // 3회전
 
-        Toast.makeText(this, (nums_com[0] + ", " + nums_com[1] + ", " + nums_com[2]), Toast.LENGTH_LONG).show();
+        Toast toast = Toast.makeText(this, (nums_com[0] + ", " + nums_com[1] + ", " + nums_com[2]), Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.show();
 
         inputPos = 0;
         cnt_play1 = 0;

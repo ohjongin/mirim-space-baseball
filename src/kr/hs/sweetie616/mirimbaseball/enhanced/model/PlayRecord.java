@@ -12,9 +12,11 @@ import java.util.ArrayList;
 public class PlayRecord {
     protected ArrayList<Integer> userNumbers = new ArrayList<Integer>(3);
 
+    protected int count;
     protected int strike;
     protected int ball;
     protected int out;
+    protected String playerName;
 
     protected String message;
 
@@ -51,21 +53,6 @@ public class PlayRecord {
                 out++;
             }
         }
-
-        /*for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (numAnswerList.get(i).equals(userNumbers.get(j))) {
-                    if (i == j) { // 서로 같은 숫자가 있고 그 숫자의 자리가 같으면 스트라이크 처리
-                        strike++; // 스트라이크
-                    } else { // 서로 같은 숫자가 있고 그 숫자의 자리가 다르면 볼 처리
-                        strike++; // 볼
-                    }// if
-                }// if
-            }// for j
-        }// for i*/
-
-        // 아웃 계산
-        out = 3 - (strike + ball); // 아웃!
     }
 
     public int getStrike() {
@@ -100,14 +87,41 @@ public class PlayRecord {
         this.message = message;
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getNumbers() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (Integer num : userNumbers) {
+            sb.append(num).append(",");
+        }
+        sb.append("]");
+
+        return sb.toString().replaceAll(",]", "]");
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("{");
-        sb.append(userNumbers.toString()).append("\n");
-        sb.append("strike:").append(getStrike()).append("\n");
-        sb.append("ball:").append(getBall()).append("\n");
-        sb.append("out:").append(getOut()).append("\n");
+        sb.append(userNumbers.toString()).append(", ");
+        sb.append("strike:").append(getStrike()).append(", ");
+        sb.append("ball:").append(getBall()).append(", ");
+        sb.append("out:").append(getOut()).append("");
         sb.append("}");
 
         return sb.toString();

@@ -26,8 +26,27 @@ public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
             convertView = inflator.inflate(R.layout.listitem_play_enhanced, null);
         }
 
+        int color = 0x00ffffff;
+
+        if (position % 2 == currPlayer) {
+            color = (0xff336633);
+        } else {
+            color = (0xffee8200);
+        }
+
         PlayRecord playRecord = getItem(position);
-        TextView tvItem = (TextView) convertView.findViewById(R.id.tv_player);
+
+        TextView tvCount = (TextView) convertView.findViewById(R.id.tv_count);
+        tvCount.setText(playRecord.getCount() + "회전");
+        tvCount.setTextColor(color);
+
+        TextView tvPlayer = (TextView) convertView.findViewById(R.id.tv_player);
+        tvPlayer.setText(playRecord.getPlayerName());
+        tvPlayer.setTextColor(color);
+
+        TextView tvNumbers = (TextView) convertView.findViewById(R.id.tv_numbers);
+        tvNumbers.setText(playRecord.getNumbers());
+        tvNumbers.setTextColor(color);
 
         for (int i = 0; i < 3; i++) {
             int id = getContext().getResources().getIdentifier("iv_strike" + i, "id", getContext().getPackageName());
@@ -43,12 +62,6 @@ public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
             view.setEnabled(i < playRecord.getOut());
         }
 
-        if (position % 2 == currPlayer) {
-			tvItem.setTextColor(0xff336633);
-		} else {
-			tvItem.setTextColor(0xffee8200);
-		}
-				
 		return convertView;
 	}
 	

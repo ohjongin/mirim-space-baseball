@@ -2,7 +2,7 @@ package kr.hs.sweetie616.mirimbaseball.enhanced;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -109,7 +109,7 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
 
             PlayRecord playRecord = new PlayRecord(userNumbers);
             playRecord.calculate(numAnswerList);
-            Log.e("", playRecord.toString());
+            // Log.e("", playRecord.toString());
 
             // 입력값을 표시하는 텍스트필드 초기화
             for (TextView v : TextViewValue) {
@@ -117,29 +117,19 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
             }
             inputPos = 0;
 
-            //cnt_play++;// 플레이 카운트 증가
-
-            // 결과값 출력
-//            String strResult = null;
-
-            //FIXME 여기서부터 playAdapter.setTest함수에 넘겨줄 문자열들 생성해요
-            String s1 = null, s2 = null, s3 = null, s4 = null, s5 = null, s6 = null;
-
-            //플레이어 전환, 이름바꿔 출력
+            // 플레이어 전환, 이름바꿔 출력
             if (player) {
-                s1 = (cnt_play1 + 1) + "회전";
-                s2 += player1;
+                playRecord.setPlayerName(player1);
+                playRecord.setCount(++cnt_play1);
                 player = !player;
                 playAdapter.setPlayer(0);
                 tv_playerName.setText(player2 + " 선수 공격!");
-                cnt_play1++;
             } else {
-                s1 = (cnt_play2 + 1) + "회전";
-                s2 += player2 + "\t\t";
+                playRecord.setPlayerName(player2);
+                playRecord.setCount(++cnt_play2);
                 player = !player;
                 playAdapter.setPlayer(1);
                 tv_playerName.setText(player1 + " 선수 공격!");
-                cnt_play2++;
             }
 
             addPlayRecord(playRecord);
@@ -165,21 +155,6 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
                     Toast.LENGTH_SHORT).show();
         }//if
         Toast.makeText(this, "틀렸습니다!", Toast.LENGTH_SHORT).show();
-    }
-
-    //숫자에 따라 동그라미를 그려주는 메소드
-    public String drawCircle(int num) {
-        String str = null;
-        if (num == 0) {
-            str = "\t\t○○○";
-        } else if (num == 1) {
-            str = "\t\t●○○";
-        } else if (num == 2) {
-            str = "\t\t●●○";
-        } else {
-            str = "\t\t●●●";
-        }
-        return str;
     }
 
     public void addPlayRecord(PlayRecord playRecord) {
@@ -223,7 +198,9 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
 
         numAnswerList.addAll(Arrays.asList(numAnswers));
 
-        Toast.makeText(this, numAnswerList.toString(), Toast.LENGTH_LONG).show();
+        Toast toast = Toast.makeText(this, numAnswerList.toString(), Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.show();
 
         inputPos = 0;
         cnt_play1 = 0;
