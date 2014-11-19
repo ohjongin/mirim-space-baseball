@@ -2,6 +2,7 @@ package kr.hs.sweetie616.mirimbaseball;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -89,7 +90,7 @@ public class Stage1Activity extends ActionBarActivity implements OnClickListener
         }
     }
 
-    //샷버튼 클릭되었을 때 호출되는 메소드
+    // 샷버튼 클릭되었을 때 호출되는 메소드
     public void clickBtnShotListener(View but) {
         nums_you = new int[3]; // 결과 초기화
 
@@ -106,7 +107,8 @@ public class Stage1Activity extends ActionBarActivity implements OnClickListener
             }
 
             PlayRecord playRecord = new PlayRecord(userNumbers);
-
+            playRecord.calculate(numAnswerList);
+            Log.e("", playRecord.toString());
 
             // 입력값을 표시하는 텍스트필드 초기화
             for (TextView v : TextViewValue) {

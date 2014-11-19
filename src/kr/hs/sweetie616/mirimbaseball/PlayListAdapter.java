@@ -28,11 +28,18 @@ public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
         PlayRecord playRecord = getItem(position);
         TextView tvItem = (TextView) convertView.findViewById(R.id.tv_player);
 
-        // TODO: layout에서 findViewById로 view를 구해서 PlayRecord에서 계산된 값으로 적절하게 View를 설정해야 함.
         for (int i = 0; i < 3; i++) {
             int id = getContext().getResources().getIdentifier("iv_strike" + i, "id", getContext().getPackageName());
             View view = convertView.findViewById(id);
             view.setEnabled(i < playRecord.getStrike());
+
+            id = getContext().getResources().getIdentifier("iv_ball" + i, "id", getContext().getPackageName());
+            view = convertView.findViewById(id);
+            view.setEnabled(i < playRecord.getBall());
+
+            id = getContext().getResources().getIdentifier("iv_out" + i, "id", getContext().getPackageName());
+            view = convertView.findViewById(id);
+            view.setEnabled(i < playRecord.getOut());
         }
 
         if (position % 2 == currPlayer) {

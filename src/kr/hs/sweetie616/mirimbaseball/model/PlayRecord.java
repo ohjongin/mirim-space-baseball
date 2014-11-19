@@ -41,6 +41,18 @@ public class PlayRecord {
     public void calculate(ArrayList<Integer> numAnswerList) {
         // 결과 검사
         for (int i = 0; i < 3; i++) {
+            int num = numAnswerList.get(i);
+
+            int index = userNumbers.indexOf(num);
+            if (index >= 0) {
+                if (index == i) strike++;
+                else ball++;
+            } else {
+                out++;
+            }
+        }
+
+        /*for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (numAnswerList.get(i).equals(userNumbers.get(j))) {
                     if (i == j) { // 서로 같은 숫자가 있고 그 숫자의 자리가 같으면 스트라이크 처리
@@ -50,7 +62,7 @@ public class PlayRecord {
                     }// if
                 }// if
             }// for j
-        }// for i
+        }// for i*/
 
         // 아웃 계산
         out = 3 - (strike + ball); // 아웃!
@@ -86,5 +98,18 @@ public class PlayRecord {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{");
+        sb.append(userNumbers.toString()).append("\n");
+        sb.append("strike:").append(getStrike()).append("\n");
+        sb.append("ball:").append(getBall()).append("\n");
+        sb.append("out:").append(getOut()).append("\n");
+        sb.append("}");
+
+        return sb.toString();
     }
 }
