@@ -9,14 +9,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import kr.hs.sweetie616.mirimbaseball.model.PlayRecord;
-
-public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
+public class PlayListAdapter extends ArrayAdapter<String> {
     protected int currPlayer = 0;
 
-    public PlayListAdapter(Context context, ArrayList<PlayRecord> items) {
-        super(context, R.layout.listitem_play, items);
-	}
+    public PlayListAdapter(Context context, ArrayList<String> items) {
+        super(context, R.layout.listitem_play_enhanced, items);
+    }
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -25,28 +23,21 @@ public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
 			convertView = inflator.inflate(R.layout.listitem_play, null);
 		}
 
-        PlayRecord playRecord = getItem(position);
-        TextView tvItem = (TextView) convertView.findViewById(R.id.tv_player);
+        String play = getItem(position);
+        String items[] = play.split(";");
 
-        for (int i = 0; i < 3; i++) {
-            int id = getContext().getResources().getIdentifier("iv_strike" + i, "id", getContext().getPackageName());
-            View view = convertView.findViewById(id);
-            view.setEnabled(i < playRecord.getStrike());
+        for (int i = 0; i < 6; i++) {
+            int id = getContext().getResources().getIdentifier("tv_item" + i, "id", getContext().getPackageName());
+            TextView view = (TextView) convertView.findViewById(id);
+            view.setText(items[i]);
 
-            id = getContext().getResources().getIdentifier("iv_ball" + i, "id", getContext().getPackageName());
-            view = convertView.findViewById(id);
-            view.setEnabled(i < playRecord.getBall());
-
-            id = getContext().getResources().getIdentifier("iv_out" + i, "id", getContext().getPackageName());
-            view = convertView.findViewById(id);
-            view.setEnabled(i < playRecord.getOut());
+            if (position % 2 == currPlayer) {
+                view.setTextColor(0xff336633);
+            } else {
+                view.setTextColor(0xffee8200);
+            }
         }
 
-        if (position % 2 == currPlayer) {
-			tvItem.setTextColor(0xff336633);
-		} else {
-			tvItem.setTextColor(0xffee8200);
-		}
 				
 		return convertView;
 	}

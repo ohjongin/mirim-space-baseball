@@ -1,4 +1,4 @@
-package kr.hs.sweetie616.mirimbaseball.model;
+package kr.hs.sweetie616.mirimbaseball.enhanced.model;
 
 import java.util.ArrayList;
 
