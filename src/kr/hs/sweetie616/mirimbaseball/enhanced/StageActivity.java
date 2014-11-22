@@ -1,8 +1,11 @@
 package kr.hs.sweetie616.mirimbaseball.enhanced;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -15,6 +18,7 @@ import java.util.Arrays;
 
 import kr.hs.sweetie616.mirimbaseball.R;
 import kr.hs.sweetie616.mirimbaseball.enhanced.model.PlayRecord;
+import kr.hs.sweetie616.mirimbaseball.enhanced.model.Stage;
 
 public class StageActivity extends ActionBarActivity implements OnClickListener {
     protected ArrayList<PlayRecord> playList;
@@ -22,11 +26,12 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
     protected ListView listView;
 
     protected TextView tv_playerName;
-    protected TextView TextViewValue[] = new TextView[3];
+    protected TextView TextViewValue[] = new TextView[5];
 
     protected ArrayList<Integer> numAnswerList = new ArrayList<Integer>();
 
-    protected int nums_you[] = new int[3];
+    protected int currStage = 1;
+    protected int nums_player[];
     protected int cnt_play1, cnt_play2, inputPos = 0;        //몇번째 도전인지 카운트, 현재 포지션 카운트
     protected boolean isPlay = true;
     protected boolean player = true;    //플레이어
@@ -36,12 +41,21 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stage1);
+        setContentView(R.layout.activity_stage_enhanced);
+
+        if (getIntent() != null && getIntent().hasExtra("currStage")) {
+            currStage = getIntent().getIntExtra("currStage", 1);
+        }
 
         tv_playerName = (TextView) findViewById(R.id.tv_player);
-        TextViewValue[0] = (TextView) findViewById(R.id.tv_value_1);
-        TextViewValue[1] = (TextView) findViewById(R.id.tv_value_2);
-        TextViewValue[2] = (TextView) findViewById(R.id.tv_value_3);
+
+        for (int i = 0; i < Stage.MAX_NUMBER_LENGTH; i++) {
+            int id = getResources().getIdentifier("tv_value_" + i, "id", getPackageName());
+            View view = findViewById(id);
+            view.setVisibility(i < Stage.getNumberLength(currStage) ? View.VISIBLE : View.GONE);
+
+            TextViewValue[i] = (TextView) view;
+        }
 
         tv_playerName.setText(player1 + " 선수 공격!");
 
@@ -51,6 +65,31 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
         listView.setAdapter(playAdapter);
 
         initGames();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        MenuItem mi = menu.findItem(R.id.action_next_stage);
+        mi.setEnabled(currStage < Stage.MAX_STAGE);
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean consumed = false;
+
+        switch (item.getItemId()) {
+            case R.id.action_next_stage:
+                Intent intent = new Intent(this, StageActivity.class);
+                intent.putExtra("currStage", currStage + 1);
+                startActivity(intent);
+                finish();
+                break;
+        }
+
+        return consumed;
     }
 
     @Override
@@ -65,7 +104,7 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
         //tv_resultScreen.append(strNum);
 
         if (isPlay) {    //게임 실행중일때 숫자버튼 눌렀을 때
-            if (inputPos < 3) {    //
+            if (inputPos < Stage.getNumberLength(currStage)) {    //
                 for (TextView v : TextViewValue) {
                     if (v.getText().toString().trim().equals(strNum)) {
                         return;
@@ -93,18 +132,23 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
 
     // 샷버튼 클릭되었을 때 호출되는 메소드
     public void clickBtnShotListener(View but) {
-        nums_you = new int[3]; // 결과 초기화
+        nums_player = new int[Stage.getNumberLength(currStage)]; // 결과 초기화
 
         if (isPlay) {
             // 입력값 체크 (입력받은 숫자가 3개가 아니면 메시지창 출력)
-            if (inputPos != 3) {
-                Toast.makeText(this, "숫자 3개를 입력해주세요 ^*^", Toast.LENGTH_SHORT).show();
+            if (inputPos != Stage.getNumberLength(currStage)) {
+                Toast.makeText(this, "숫자 " + Stage.getNumberLength(currStage) + "개를 입력해주세요 ^*^", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            int userNumbers[] = new int[3];
-            for (int i = 0; i < TextViewValue.length; i++) {
-                userNumbers[i] = Integer.parseInt(TextViewValue[i].getText().toString());
+            int userNumbers[] = new int[Stage.getNumberLength(currStage)];
+            try {
+                for (int i = 0; i < Stage.getNumberLength(currStage); i++) {
+                    userNumbers[i] = Integer.parseInt(TextViewValue[i].getText().toString());
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, "숫자를 다시 입력해주세요 ^*^", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             PlayRecord playRecord = new PlayRecord(userNumbers);
@@ -134,7 +178,7 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
 
             addPlayRecord(playRecord);
 
-            if (nums_you[0] == 3) {
+            if (nums_player[0] == Stage.getNumberLength(currStage)) {
                 //TODO Intent
                 //어펜드 리절트 대신 다음 레이아웃으로 인텐트시켜서 이긴 사용자 이름 띄워준 후
                 //랜덤벌칙 또는 메인으로 버튼 두개 있도록 다음 레이아웃 만들기
@@ -179,7 +223,9 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
             v.setText(" ");
         }
 
-        Integer numAnswers[] = new Integer[3];
+        nums_player = new int[Stage.getNumberLength(currStage)];
+
+        Integer numAnswers[] = new Integer[Stage.getNumberLength(currStage)];
         // 중복되지 않는 3개의 난수 저장.
         int i = 0;
         do {
@@ -194,13 +240,16 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
             }
 
             i++;
-        } while (i < 3); // 3회전
+        } while (i < Stage.getNumberLength(currStage)); // 3회전
 
         numAnswerList.addAll(Arrays.asList(numAnswers));
 
         Toast toast = Toast.makeText(this, numAnswerList.toString(), Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         toast.show();
+
+
+        Stage.setCurrStage(currStage);
 
         inputPos = 0;
         cnt_play1 = 0;

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="kr.hs.sweetie616.mirimbaseball.SplashActivity">
+
+    <item
+        android:id="@+id/action_next_stage"
+        android:orderInCategory="100"
+        android:title="Next Stage"
+        app:showAsAction="never"/>
+
+</menu>
