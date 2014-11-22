@@ -65,10 +65,6 @@ public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
             view.setEnabled(i < playRecord.getStrike());
             view.setVisibility(i < Stage.getNumberLength() ? View.VISIBLE : View.GONE);
 
-            id = getContext().getResources().getIdentifier("gap_strike" + i, "id", getContext().getPackageName());
-            view = convertView.findViewById(id);
-            view.setVisibility(i < Stage.getNumberLength() ? View.VISIBLE : View.GONE);
-
             id = getContext().getResources().getIdentifier("iv_ball" + i, "id", getContext().getPackageName());
             view = convertView.findViewById(id);
             view.setEnabled(i < playRecord.getBall());
@@ -77,6 +73,18 @@ public class PlayListAdapter extends ArrayAdapter<PlayRecord> {
             id = getContext().getResources().getIdentifier("iv_out" + i, "id", getContext().getPackageName());
             view = convertView.findViewById(id);
             view.setEnabled(i < playRecord.getOut());
+            view.setVisibility(i < Stage.getNumberLength() ? View.VISIBLE : View.GONE);
+
+            id = getContext().getResources().getIdentifier("gap_strike" + i, "id", getContext().getPackageName());
+            view = convertView.findViewById(id);
+            view.setVisibility(i < Stage.getNumberLength() ? View.VISIBLE : View.GONE);
+
+            id = getContext().getResources().getIdentifier("gap_ball" + i, "id", getContext().getPackageName());
+            view = convertView.findViewById(id);
+            view.setVisibility(i < Stage.getNumberLength() ? View.VISIBLE : View.GONE);
+
+            id = getContext().getResources().getIdentifier("gap_out" + i, "id", getContext().getPackageName());
+            view = convertView.findViewById(id);
             view.setVisibility(i < Stage.getNumberLength() ? View.VISIBLE : View.GONE);
         }
 

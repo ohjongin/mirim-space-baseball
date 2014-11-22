@@ -114,10 +114,10 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
                 inputPos++;
 
             } else {
-                Toast.makeText(this, "공격버튼을 눌러주세요", Toast.LENGTH_SHORT).show();
+                showToastMessage("공격버튼을 눌러주세요");
             }
         } else {    //게임 종료때 숫자버튼 눌렀을 때
-            Toast.makeText(this, "게임을 새로 시작해주세요!", Toast.LENGTH_SHORT).show();
+            showToastMessage("게임을 새로 시작해주세요!");
         }
     }
 
@@ -137,7 +137,7 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
         if (isPlay) {
             // 입력값 체크 (입력받은 숫자가 3개가 아니면 메시지창 출력)
             if (inputPos != Stage.getNumberLength(currStage)) {
-                Toast.makeText(this, "숫자 " + Stage.getNumberLength(currStage) + "개를 입력해주세요 ^*^", Toast.LENGTH_SHORT).show();
+                showToastMessage("숫자 " + Stage.getNumberLength(currStage) + "개를 입력해주세요 ^*^");
                 return;
             }
 
@@ -147,7 +147,7 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
                     userNumbers[i] = Integer.parseInt(TextViewValue[i].getText().toString());
                 }
             } catch (Exception e) {
-                Toast.makeText(this, "숫자를 다시 입력해주세요 ^*^", Toast.LENGTH_SHORT).show();
+                showToastMessage("숫자를 다시 입력해주세요 ^*^");
                 return;
             }
 
@@ -198,7 +198,7 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
             Toast.makeText(getApplicationContext(), "게임을 새로 시작해주세요!",
                     Toast.LENGTH_SHORT).show();
         }//if
-        Toast.makeText(this, "틀렸습니다!", Toast.LENGTH_SHORT).show();
+        showToastMessage("틀렸습니다!");
     }
 
     public void addPlayRecord(PlayRecord playRecord) {
@@ -244,10 +244,7 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
 
         numAnswerList.addAll(Arrays.asList(numAnswers));
 
-        Toast toast = Toast.makeText(this, numAnswerList.toString(), Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        toast.show();
-
+        showToastMessage(numAnswerList.toString());
 
         Stage.setCurrStage(currStage);
 
@@ -257,4 +254,9 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
         isPlay = true;    //플레이중으로 전환
     }
 
+    protected void showToastMessage(String msg) {
+        Toast toast = Toast.makeText(this, numAnswerList.toString(), Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.show();
+    }
 }

@@ -66,7 +66,8 @@
             <View
                 android:id="@+id/gap_strike0"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:id="@+id/iv_strike0"
@@ -80,7 +81,7 @@
                 android:id="@+id/gap_strike1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="2"/>
 
             <ImageView
                 android:id="@+id/iv_strike1"
@@ -94,7 +95,7 @@
                 android:id="@+id/gap_strike2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="2"/>
 
             <ImageView
                 android:id="@+id/iv_strike2"
@@ -108,7 +109,7 @@
                 android:id="@+id/gap_strike3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="2"/>
 
             <ImageView
                 android:id="@+id/iv_strike3"
@@ -122,7 +123,7 @@
                 android:id="@+id/gap_strike4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="2"/>
 
             <ImageView
                 android:id="@+id/iv_strike4"
@@ -131,6 +132,12 @@
                 android:layout_margin="1dp"
                 android:enabled="false"
                 android:src="@drawable/selector_strike"/>
+
+            <View
+                android:id="@+id/gap_strike5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -141,7 +148,14 @@
             android:layout_marginRight="2dp"
             android:padding="3dp"
             android:orientation="horizontal"
+            android:gravity="center"
             android:background="@drawable/round_rect">
+
+            <View
+                android:id="@+id/gap_ball0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:id="@+id/iv_ball0"
@@ -151,6 +165,12 @@
                 android:enabled="false"
                 android:src="@drawable/selector_ball"/>
 
+            <View
+                android:id="@+id/gap_ball1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
             <ImageView
                 android:id="@+id/iv_ball1"
                 android:layout_width="@dimen/circle_size"
@@ -158,6 +178,12 @@
                 android:layout_margin="1dp"
                 android:enabled="false"
                 android:src="@drawable/selector_ball"/>
+
+            <View
+                android:id="@+id/gap_ball2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
 
             <ImageView
                 android:id="@+id/iv_ball2"
@@ -167,6 +193,12 @@
                 android:enabled="false"
                 android:src="@drawable/selector_ball"/>
 
+            <View
+                android:id="@+id/gap_ball3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
             <ImageView
                 android:id="@+id/iv_ball3"
                 android:layout_width="@dimen/circle_size"
@@ -175,6 +207,12 @@
                 android:enabled="false"
                 android:src="@drawable/selector_ball"/>
 
+            <View
+                android:id="@+id/gap_ball4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
             <ImageView
                 android:id="@+id/iv_ball4"
                 android:layout_width="@dimen/circle_size"
@@ -182,6 +220,12 @@
                 android:layout_margin="1dp"
                 android:enabled="false"
                 android:src="@drawable/selector_ball"/>
+
+            <View
+                android:id="@+id/gap_ball5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -193,7 +237,14 @@
             android:layout_marginRight="2dp"
             android:padding="3dp"
             android:orientation="horizontal"
+            android:gravity="center"
             android:background="@drawable/round_rect">
+
+            <View
+                android:id="@+id/gap_out0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:id="@+id/iv_out0"
@@ -203,6 +254,12 @@
                 android:enabled="false"
                 android:src="@drawable/selector_out"/>
 
+            <View
+                android:id="@+id/gap_out1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
             <ImageView
                 android:id="@+id/iv_out1"
                 android:layout_width="@dimen/circle_size"
@@ -210,6 +267,12 @@
                 android:layout_margin="1dp"
                 android:enabled="false"
                 android:src="@drawable/selector_out"/>
+
+            <View
+                android:id="@+id/gap_out2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
 
             <ImageView
                 android:id="@+id/iv_out2"
@@ -219,6 +282,12 @@
                 android:enabled="false"
                 android:src="@drawable/selector_out"/>
 
+            <View
+                android:id="@+id/gap_out3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
             <ImageView
                 android:id="@+id/iv_out3"
                 android:layout_width="@dimen/circle_size"
@@ -227,6 +296,12 @@
                 android:enabled="false"
                 android:src="@drawable/selector_out"/>
 
+            <View
+                android:id="@+id/gap_out4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
             <ImageView
                 android:id="@+id/iv_out4"
                 android:layout_width="@dimen/circle_size"
@@ -234,6 +309,12 @@
                 android:layout_margin="1dp"
                 android:enabled="false"
                 android:src="@drawable/selector_out"/>
+
+            <View
+                android:id="@+id/gap_out5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
