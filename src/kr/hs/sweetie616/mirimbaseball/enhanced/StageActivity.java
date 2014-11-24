@@ -1,5 +1,7 @@
 package kr.hs.sweetie616.mirimbaseball.enhanced;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -60,6 +62,19 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
         tv_playerName.setText(player1 + " 선수 공격!");
 
         listView = (ListView) findViewById(android.R.id.list);
+        View header = getLayoutInflater().inflate(R.layout.listitem_play_enhanced, null, false);
+        header.findViewById(R.id.layout_strike_header).setVisibility(View.VISIBLE);
+        header.findViewById(R.id.layout_strike_body).setVisibility(View.GONE);
+
+        ((TextView) header.findViewById(R.id.tv_count)).setText("");
+
+        ((TextView) header.findViewById(R.id.tv_player)).setText("이름");
+        ((TextView) header.findViewById(R.id.tv_player)).setTextColor(0xffffffff);
+        ((TextView) header.findViewById(R.id.tv_numbers)).setText("숫자");
+        ((TextView) header.findViewById(R.id.tv_numbers)).setTextColor(0xffffffff);
+
+        listView.addHeaderView(header);
+
         playList = new ArrayList<PlayRecord>();
         playAdapter = new PlayListAdapter(this, playList);
         listView.setAdapter(playAdapter);
@@ -94,6 +109,24 @@ public class StageActivity extends ActionBarActivity implements OnClickListener 
 
     @Override
     public void onClick(View arg0) {
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder d = new AlertDialog.Builder(this);
+        d.setMessage("정말 종료하시겠습니까?");
+        d.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // process전체 종료
+                finish();
+            }
+        });
+        d.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        d.show();
     }
 
     //숫자 버튼을 클릭되었을때 호출되는 메소드

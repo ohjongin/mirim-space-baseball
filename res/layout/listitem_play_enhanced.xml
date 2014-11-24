@@ -7,8 +7,9 @@
               android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="3"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
@@ -16,7 +17,7 @@
             android:id="@+id/tv_count"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_marginLeft="3dp"
             android:textSize="@dimen/play_list_text_size_enhanced"
             android:singleLine="true"
@@ -25,8 +26,9 @@
 
         <TextView
             android:id="@+id/tv_player"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:layout_marginLeft="5dp"
             android:textSize="@dimen/play_list_text_size_enhanced"
             android:textStyle="bold"
@@ -36,19 +38,20 @@
 
         <TextView
             android:id="@+id/tv_numbers"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="3"
             android:layout_marginLeft="5dp"
             android:textSize="@dimen/play_list_text_size_enhanced"
             android:singleLine="true"
             android:gravity="center"
-            tools:text="[1,2,3,4,5]]"/>
+            tools:text="[1,2,3,4,5]"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:layout_marginLeft="3dp"
         android:orientation="horizontal">
 
@@ -63,81 +66,106 @@
             android:gravity="center"
             android:background="@drawable/round_rect">
 
-            <View
-                android:id="@+id/gap_strike0"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/layout_strike_header"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="gone"
+                tools:visibility="visible">
 
-            <ImageView
-                android:id="@+id/iv_strike0"
-                android:layout_width="@dimen/circle_size"
-                android:layout_height="@dimen/circle_size"
-                android:layout_margin="1dp"
-                android:enabled="false"
-                android:src="@drawable/selector_strike"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Strike"
+                    android:textStyle="bold"
+                    android:textColor="#ffffffff"/>
+            </LinearLayout>
 
-            <View
-                android:id="@+id/gap_strike1"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/layout_strike_body"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                android:orientation="horizontal"
+                android:gravity="center">
 
-            <ImageView
-                android:id="@+id/iv_strike1"
-                android:layout_width="@dimen/circle_size"
-                android:layout_height="@dimen/circle_size"
-                android:layout_margin="1dp"
-                android:enabled="false"
-                android:src="@drawable/selector_strike"/>
+                <View
+                    android:id="@+id/gap_strike0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
 
-            <View
-                android:id="@+id/gap_strike2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                <ImageView
+                    android:id="@+id/iv_strike0"
+                    android:layout_width="@dimen/circle_size"
+                    android:layout_height="@dimen/circle_size"
+                    android:layout_margin="1dp"
+                    android:enabled="false"
+                    android:src="@drawable/selector_strike"/>
 
-            <ImageView
-                android:id="@+id/iv_strike2"
-                android:layout_width="@dimen/circle_size"
-                android:layout_height="@dimen/circle_size"
-                android:layout_margin="1dp"
-                android:enabled="false"
-                android:src="@drawable/selector_strike"/>
+                <View
+                    android:id="@+id/gap_strike1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
 
-            <View
-                android:id="@+id/gap_strike3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                <ImageView
+                    android:id="@+id/iv_strike1"
+                    android:layout_width="@dimen/circle_size"
+                    android:layout_height="@dimen/circle_size"
+                    android:layout_margin="1dp"
+                    android:enabled="false"
+                    android:src="@drawable/selector_strike"/>
 
-            <ImageView
-                android:id="@+id/iv_strike3"
-                android:layout_width="@dimen/circle_size"
-                android:layout_height="@dimen/circle_size"
-                android:layout_margin="1dp"
-                android:enabled="false"
-                android:src="@drawable/selector_strike"/>
+                <View
+                    android:id="@+id/gap_strike2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
 
-            <View
-                android:id="@+id/gap_strike4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                <ImageView
+                    android:id="@+id/iv_strike2"
+                    android:layout_width="@dimen/circle_size"
+                    android:layout_height="@dimen/circle_size"
+                    android:layout_margin="1dp"
+                    android:enabled="false"
+                    android:src="@drawable/selector_strike"/>
 
-            <ImageView
-                android:id="@+id/iv_strike4"
-                android:layout_width="@dimen/circle_size"
-                android:layout_height="@dimen/circle_size"
-                android:layout_margin="1dp"
-                android:enabled="false"
-                android:src="@drawable/selector_strike"/>
+                <View
+                    android:id="@+id/gap_strike3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
 
-            <View
-                android:id="@+id/gap_strike5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                <ImageView
+                    android:id="@+id/iv_strike3"
+                    android:layout_width="@dimen/circle_size"
+                    android:layout_height="@dimen/circle_size"
+                    android:layout_margin="1dp"
+                    android:enabled="false"
+                    android:src="@drawable/selector_strike"/>
+
+                <View
+                    android:id="@+id/gap_strike4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
+
+                <ImageView
+                    android:id="@+id/iv_strike4"
+                    android:layout_width="@dimen/circle_size"
+                    android:layout_height="@dimen/circle_size"
+                    android:layout_margin="1dp"
+                    android:enabled="false"
+                    android:src="@drawable/selector_strike"/>
+
+                <View
+                    android:id="@+id/gap_strike5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
